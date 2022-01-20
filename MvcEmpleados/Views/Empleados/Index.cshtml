@@ -1,0 +1,40 @@
+﻿@model List<LibraryEmpleados.Empleado>
+@{ 
+    List<String> oficios = ViewData["OFICIOS"] as List<String>;
+}
+
+<h1>API Empleados Servidor</h1>
+<hr />
+
+<form method="post" class="mb-3">
+    <label>Oficio: </label>
+    <select name="oficio" class="form-control">
+        @foreach (String oficio in oficios) {
+            <option value="@oficio">@oficio</option>
+        }
+    </select>
+    <button class="btn btn-success mt-2">Mostrar empleados</button>
+</form>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Oficio</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Departamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (LibraryEmpleados.Empleado emp in Model) { 
+        <tr>
+            <th scope="row">@emp.IdEmpleado</th>
+            <td>@emp.Apellido</td>
+            <td>@emp.Oficio</td>
+            <td>@emp.Salario</td>
+            <td>@emp.IdDepartamento</td>
+        </tr>
+        }
+    </tbody>
+</table>
